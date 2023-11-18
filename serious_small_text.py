@@ -8,7 +8,7 @@ from panda3d.core import ClockObject
 from panda3d.core import TextureStage
 from direct.showbase.ShowBase import ShowBase
 from direct.gui.DirectGui import DirectFrame
-
+from panda3d.core import TransparencyAttrib
 
 class Wrapper2:
     def __init__(self):
@@ -120,6 +120,7 @@ class Wrapper:
         DirectFrame(pos=content_pos,frameSize=content_frame_size)
         
         f = 0.095
+        f = 0.1
         frame_size = (-0,f,-0,f)
         
         # and these loops create lots of smaller frames that form
@@ -134,37 +135,53 @@ class Wrapper:
                     F=DirectFrame(pos=pos,frameSize=frame_size)
                 
                 if x ==0 and y ==0:
-                    tex = loader.loadTexture("topleftcorner.png")
+                    #tex = loader.loadTexture("topleftcorner.png")
+                    tex = loader.loadTexture("gradient_topleft.png")
+                    
                     F["frameTexture"]=(tex)
                 if x ==xm-1 and y ==0:
-                    tex = loader.loadTexture("toprightcorner.png")
+                    #tex = loader.loadTexture("toprightcorner.png")
+                    tex = loader.loadTexture("gradient_topright.png")
+                    
                     F["frameTexture"]=(tex)
                 if x ==0 and y ==ym-1:
-                    tex = loader.loadTexture("bottomleftcorner.png")
+                    #tex = loader.loadTexture("bottomleftcorner.png")
+                    tex = loader.loadTexture("gradient_bottomleft.png")
+                    
                     F["frameTexture"]=(tex)
                 if x ==xm-1 and y ==ym-1:
-                    tex = loader.loadTexture("bottomrightcorner.png")
+                    #tex = loader.loadTexture("bottomrightcorner.png")
+                    tex = loader.loadTexture("gradient_bottomright.png")
+                    
                     F["frameTexture"]=(tex)
                 if y == 0 and 0 < x < xm-1:
-                    tex = loader.loadTexture("upborder.png")
+                    #tex = loader.loadTexture("upborder.png")
+                    tex = loader.loadTexture("gradient_top.png")
+                    
                     F["frameTexture"]=(tex)
                 if x == 0 and 0 < y < ym-1:
-                    tex = loader.loadTexture("leftborder.png")
+                    #tex = loader.loadTexture("leftborder.png")
+                    tex = loader.loadTexture("gradient_left.png")
+                    
                     F["frameTexture"]=(tex)
                 if y == ym-1 and 0 < x < xm-1:
-                    tex = loader.loadTexture("downborder.png")
+                    #tex = loader.loadTexture("downborder.png")
+                    tex = loader.loadTexture("gradient_bottom.png")
+                    
                     F["frameTexture"]=(tex)
                 if x == xm-1 and 0 < y < ym-1:
-                    tex = loader.loadTexture("rightborder.png")
-                    F["frameTexture"]=(tex)
+                    #tex = loader.loadTexture("rightborder.png")
+                    tex = loader.loadTexture("gradient_right.png")
                     
+                    F["frameTexture"]=(tex)
+                F.setTransparency(TransparencyAttrib.MAlpha)    
                 x+=1
             y+=1
 
 def main():
     # comment and uncomment here according to taste.
-    # W = Wrapper()
-    W = Wrapper2()
+    W = Wrapper()
+    # W = Wrapper2()
     while True:
         W.b.taskMgr.step()
     
